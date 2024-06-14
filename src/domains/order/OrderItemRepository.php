@@ -10,16 +10,23 @@ class OrderItemRepository
   public static function getFromLineItem($item, $purchasable, $order)
   {
     $imageHandle = Klaviyo::getInstance()->getSettings()->imageFieldHandle;
-    $imageTransform = Klaviyo::getInstance()->getSettings()->imageFieldTransform;
+
+    if(!$imageHandle){
+        return OrderItemModel::fromLineItem($item, $purchasable, $order, '');
+    }
 
     $image = $purchasable->$imageHandle->one() ?? $purchasable->product->$imageHandle->one() ?? null;
 
     if (!$image) {
-      $image = '';
-    } else {
-      $image = $image->getUrl($imageTransform);
+        return OrderItemModel::fromLineItem($item, $purchasable, $order, '');
     }
 
-    return OrderItemModel::fromLineItem($item, $purchasable, $order, $image);
+    $imageTransform = Klaviyo::getInstance()->getSettings()->imageFieldTransform;
+
+    if (!$imageTransform) {
+        return OrderItemModel::fromLineItem($item, $purchasable, $order, $image->url);
+      }
+
+    return OrderItemModel::fromLineItem($item, $purchasable, $order, $image->getUrl($imageTransform));
   }
 }

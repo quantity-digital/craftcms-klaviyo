@@ -2,26 +2,26 @@
 
 namespace QD\klaviyo\domains\order;
 
-use craft\elements\Address;
+use craft\commerce\models\Address;
 
 class OrderAddressModel
 {
   public function __construct(
-    public readonly int $id,
+    public int $id,
 
-    public readonly string $firstName,
-    public readonly string $lastName,
-    public readonly string $fullName,
+    public string $firstName,
+    public string $lastName,
+    public string $fullName,
 
-    public readonly string $organization,
-    public readonly string $organizationId,
+    public string $organization,
+    public string $organizationId,
 
-    public readonly string $addressLine1,
-    public readonly string $addressLine2,
-    public readonly string $locality,
-    public readonly string $postalCode,
-    public readonly string $countryCode,
-    public readonly string $state,
+    public string $addressLine1,
+    public string $addressLine2,
+    public string $locality,
+    public string $postalCode,
+    public string $countryCode,
+    public string $state,
   ) {
   }
 
@@ -36,14 +36,14 @@ class OrderAddressModel
       firstName: $address->firstName ?? '',
       lastName: $address->lastName ?? '',
       fullName: $address->fullName ?? '',
-      organization: $address->organization ?? '',
-      organizationId: $address->organizationId ?? '',
-      addressLine1: $address->addressLine1 ?? '',
-      addressLine2: $address->addressLine2 ?? '',
-      locality: $address->locality ?? '',
-      postalCode: $address->postalCode ?? '',
-      countryCode: $address->countryCode ?? '',
-      state: $address->state ?? ''
+      organization: $address->businessName ?? '',
+      organizationId: $address->businessTaxId ?? '',
+      addressLine1: $address->address1 ?? '',
+      addressLine2: $address->address2 ?? '',
+      locality: $address->city ?? '',
+      postalCode: $address->zipCode ?? '',
+      countryCode: $address->countryIso ?? '',
+      state: $address->stateName ?? ''
     );
   }
 

@@ -8,22 +8,22 @@ use craft\commerce\helpers\Currency;
 class OrderItemModel
 {
   public function __construct(
-    public readonly int $id,
-    public readonly string $sku,
-    public readonly string $title,
-    public readonly string $variant,
-    public readonly string $description,
-    public readonly string $url,
+    public int $id,
+    public string $sku,
+    public string $title,
+    public string $variant,
+    public string $description,
+    public string $url,
 
-    public readonly int $qty,
+    public int $qty,
 
-    public readonly int $price,
-    public readonly int $salePrice,
+    public int $price,
+    public int $salePrice,
 
-    public readonly int $unitPrice,
-    public readonly int $unitSalePrice,
+    public int $unitPrice,
+    public int $unitSalePrice,
 
-    public readonly string $image,
+    public string $image,
   ) {
   }
 

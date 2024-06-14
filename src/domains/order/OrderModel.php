@@ -7,31 +7,31 @@ use craft\commerce\helpers\Currency;
 
 class OrderModel
 {
-  public readonly bool $hasCoupon;
-  public readonly bool $hasDiscount;
+  public bool $hasCoupon;
+  public bool $hasDiscount;
 
   public function __construct(
-    public readonly int $id,
-    public readonly string $number,
-    public readonly string $reference,
+    public int $id,
+    public string $number,
+    public string $reference,
 
-    public readonly int $total,
-    public readonly int $discount,
-    public readonly int $shipping,
+    public int $total,
+    public int $discount,
+    public int $shipping,
 
-    public readonly string $currency,
-    public readonly int $qty,
-    public readonly string $coupon,
+    public string $currency,
+    public int $qty,
+    public string $coupon,
 
-    public readonly array $items,
-    public readonly array $itemIds,
-    public readonly array $itemTitles,
-    public readonly array $itemSkus,
+    public array $items,
+    public array $itemIds,
+    public array $itemTitles,
+    public array $itemSkus,
 
-    public readonly OrderAddressModel $billingAddress,
-    public readonly OrderAddressModel $shippingAddress,
+    public OrderAddressModel $billingAddress,
+    public OrderAddressModel $shippingAddress,
 
-    public readonly string $restoreUrl,
+    public string $restoreUrl,
   ) {
     $this->hasCoupon = (bool) $this->coupon;
     $this->hasDiscount = (bool) $this->discount > 0;

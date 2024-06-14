@@ -47,7 +47,7 @@ class OrderEvents
         return;
       }
 
-      OrderQueue::createEvent('Placed Order', $email, $order->id);
+      OrderQueue::createEvent('Order: Completed', $email, $order->id);
     } catch (\Throwable $th) {
     }
   }
@@ -62,7 +62,7 @@ class OrderEvents
         return;
       }
 
-      OrderQueue::createEvent('Cart Updated', $email, $order->id);
+      OrderQueue::createEvent('Order: Updated', $email, $order->id);
     } catch (\Throwable $th) {
     }
   }
@@ -72,10 +72,10 @@ class OrderEvents
     try {
       $history = $event->orderHistory;
       $order = $history->getOrder();
-      $status = $history->getNewStatus()->name ?? 'Status Changed';
+      $status = $history->getNewStatus()->name ?? 'Order: Status Changed';
       $email = $order->email;
 
-      OrderQueue::createEvent($status . ' Order', $email, $order->id);
+      OrderQueue::createEvent('Order: ' . $status, $email, $order->id);
     } catch (\Throwable $th) {
     }
   }

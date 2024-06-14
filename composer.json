@@ -1,41 +1,41 @@
 {
-	"name": "quantity-digital/craftcms-klaviyo",
-	"description": "Klaviyo intergration for CraftCMS & Commerce",
-	"type": "craft-plugin",
-	"version": "4.0.0",
-	"keywords": [
-		"craft",
-		"cms",
-		"craftcms",
-		"craft-plugin",
-		"craft-commerce",
-		"email",
-		"klaviyo"
-	],
-	"support": {
-		"docs": "https://github.com/quantity-digital/craftcms-klaviyo/blob/main/README.md",
-		"issues": "https://github.com/quantity-digital/craftcms-klaviyo/issues"
-	},
-	"license": "MIT",
-	"authors": [
-		{
-			"name": "Quantity Digital",
-			"homepage": "https://www.quantity.dk/"
-		}
-	],
-	"require": {
-		"craftcms/cms": "^4.0",
-		"craftcms/commerce": "^4.0",
-		"klaviyo/api": "1.1.0"
-	},
-	"autoload": {
-		"psr-4": {
-			"QD\\klaviyo\\": "src/"
-		}
-	},
-	"extra": {
-		"name": "Klaviyo",
-		"handle": "craftcms-klaviyo",
-		"class": "QD\\klaviyo\\Klaviyo"
-	}
+  "name": "quantity-digital/craftcms-klaviyo",
+  "description": "Klaviyo intergration for CraftCMS & Commerce",
+  "type": "craft-plugin",
+  "version": "3.0.0",
+  "keywords": [
+    "craft",
+    "cms",
+    "craftcms",
+    "craft-plugin",
+    "craft-commerce",
+    "email",
+    "klaviyo"
+  ],
+  "support": {
+    "docs": "https://github.com/quantity-digital/craftcms-klaviyo/blob/main/README.md",
+    "issues": "https://github.com/quantity-digital/craftcms-klaviyo/issues"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Quantity Digital",
+      "homepage": "https://www.quantity.dk/"
+    }
+  ],
+  "require": {
+    "craftcms/cms": "^3.0",
+    "craftcms/commerce": "^3.0",
+    "klaviyo/api": "1.1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "QD\\klaviyo\\": "src/"
+    }
+  },
+  "extra": {
+    "name": "Klaviyo",
+    "handle": "craftcms-klaviyo",
+    "class": "QD\\klaviyo\\Klaviyo"
+  }
 }

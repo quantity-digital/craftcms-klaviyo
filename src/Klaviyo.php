@@ -7,7 +7,6 @@ use craft\base\Model;
 use craft\base\Plugin;
 use QD\klaviyo\config\Routes;
 use QD\klaviyo\config\Events;
-use QD\klaviyo\config\Services;
 use QD\klaviyo\models\Settings;
 
 class Klaviyo extends Plugin
@@ -16,7 +15,7 @@ class Klaviyo extends Plugin
     use Events;
 
     public static $plugin;
-    public bool $hasCpSettings = true;
+    public $hasCpSettings = true;
 
 
     // Init
