@@ -1,0 +1,88 @@
+{% import "_includes/forms" as forms %}
+  <div class="flex-fields">
+    {{
+      forms.autosuggestField({
+        label: "Public Key"|t('klaviyo'),
+        instructions: "Enter your Klaviyo public key."|t('klaviyo'),
+        name: 'publicKey',
+        value: settings.publicKey,
+        suggestEnvVars: true,
+        required: true,
+        errors: settings.getErrors('publicKey'),
+        fieldClass: "width-50",
+      })
+    }}
+
+    {{
+      forms.autosuggestField({
+        label: "Api Key"|t('klaviyo'),
+        instructions: "Enter your Klaviyo Api key."|t('klaviyo'),
+        name: 'apiKey',
+        value: settings.apiKey,
+        suggestEnvVars: true,
+        required: true,
+        errors: settings.getErrors('apiKey'),
+        fieldClass: "width-50",
+      })
+    }}
+  </div>
+  <hr>
+  <div class="flex-fields">
+      {{
+      forms.autosuggestField({
+        label: "Default list ID"|t('klaviyo'),
+        instructions: "Enter the ID of the list to use if nothing is explicitly set"|t('klaviyo'),
+        name: 'defaultList',
+        value: settings.defaultList,
+        suggestEnvVars: true,
+        errors: settings.getErrors('defaultList'),
+      })
+    }}
+  </div>
+  <hr>
+    <div class="flex-fields">
+      {{
+        forms.textField({
+          label: "Image field handle"|t('klaviyo'),
+          instructions: "Enter the field handle for the variant / product image"|t('klaviyo'),
+          name: 'imageFieldHandle',
+          value: settings.imageFieldHandle,
+          errors: settings.getErrors('imageFieldHandle'),
+          fieldClass: "width-50",
+        })
+      }}
+      {{
+        forms.textField({
+          label: "Image field transform"|t('klaviyo'),
+          instructions: "Enter the transform handle for images being added to klaviyo"|t('klaviyo'),
+          name: 'imageFieldTransform',
+          value: settings.imageFieldTransform,
+          errors: settings.getErrors('imageFieldTransform'),
+          fieldClass: "width-50",
+        })
+      }}
+  </div>
+  <hr>
+  <div class="flex-fields">
+    {{ forms.checkboxField({
+      label: "Track Order Updates",
+      name: 'trackOrderUpdate',
+      checked: settings.trackOrderUpdate,
+      instructions: 'Track event in Klaviyo when an order gets updated'
+    }) }}
+    
+    {{ forms.checkboxField({
+      label: "Track Order Completed",
+      name: 'trackOrderComplete',
+      checked: settings.trackOrderComplete,
+      instructions: 'Track event in Klaviyo when an order is completed'
+    }) }}
+
+    {{ forms.checkboxField({
+      label: "Track Order Status changes",
+      name: 'trackOrderStatus',
+      checked: settings.trackOrderStatus,
+      instructions: 'Track event in Klaviyo when a completed order changes status'
+    }) }}
+  </div>
+
