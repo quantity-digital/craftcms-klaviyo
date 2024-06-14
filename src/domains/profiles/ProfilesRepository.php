@@ -19,7 +19,7 @@ class ProfilesRepository
   public static function getFromProfileId(string $id): ProfilesModel
   {
     $profile = ProfilesApi::getProfile($id);
-    return ProfilesModel::fromKlaviyo($profile);
+    return ProfilesModel::fromArray($profile);
   }
 
   public static function getFromEmail(string $email): ProfilesModel
@@ -39,9 +39,15 @@ class ProfilesRepository
     ]);
 
     $content = Json::decode($res->getBody()->getContents());
-    $profile = (object) $content['data'][0] ?? null;
 
-    return ProfilesModel::fromKlaviyo($profile);
+    $data = $content['data'];
+
+    if (!$data) {
+      return ProfilesModel::fromEmpty();
+    }
+
+    $profile = $content['data'][0] ?? null;
+    return ProfilesModel::fromArray($profile);
   }
 
   //* Create
@@ -64,16 +70,19 @@ class ProfilesRepository
       $body['data']['properties'] = $properties;
     }
 
-    $profile = ProfilesApi::createProfile($body);
-    return ProfilesModel::fromKlaviyo($profile);
+    return ProfilesApi::createProfile($body);
   }
 
   public static function createProfileAndAddToList(string $email, ?string $list = null, ?object $attributes = null, ?object $properties = null): ProfilesModel
   {
-    $profile = self::createFromAttributes($email, $attributes, $properties);
+    $profile = self::getFromEmail($email);
+
+    if (!$profile->id) {
+      $profile = self::createFromAttributes($email, $attributes, $properties);
+    }
 
     if (!$list) {
-      $list = null; // TODO: Get list default
+      $list = Klaviyo::getInstance()->getSettings()->defaultList;
     }
 
     ProfilesApi::addProfileToList($list, $profile->id);

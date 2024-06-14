@@ -39,27 +39,44 @@ class OrderEvents
   //* Craft Events
   public static function afterOrderComplete($event)
   {
-    $order = $event->sender;
-    $email = $order->email;
+    try {
+      $order = $event->sender;
+      $email = $order->email;
 
-    OrderQueue::createEvent('Placed Order', $email, $order->id);
+      if (!$email) {
+        return;
+      }
+
+      OrderQueue::createEvent('Placed Order', $email, $order->id);
+    } catch (\Throwable $th) {
+    }
   }
 
   public static function afterSave($event)
   {
-    $order = $event->sender;
-    $email = $order->email;
+    try {
+      $order = $event->sender;
+      $email = $order->email ?? null;
 
-    OrderQueue::createEvent('Cart Updated', $email, $order->id);
+      if (!$email) {
+        return;
+      }
+
+      OrderQueue::createEvent('Cart Updated', $email, $order->id);
+    } catch (\Throwable $th) {
+    }
   }
 
   public static function onOrderStatusChange($event)
   {
-    $history = $event->orderHistory;
-    $order = $history->getOrder();
-    $status = $history->getNewStatus()->name ?? 'Status Changed';
-    $email = $order->email;
+    try {
+      $history = $event->orderHistory;
+      $order = $history->getOrder();
+      $status = $history->getNewStatus()->name ?? 'Status Changed';
+      $email = $order->email;
 
-    OrderQueue::createEvent($status . ' Order', $email, $order->id);
+      OrderQueue::createEvent($status . ' Order', $email, $order->id);
+    } catch (\Throwable $th) {
+    }
   }
 }

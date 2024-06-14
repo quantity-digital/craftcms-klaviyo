@@ -9,10 +9,24 @@ class ProfilesModel
   ) {
   }
 
-  public static function fromKlaviyo(mixed $klaviyo): ProfilesModel
+  public static function fromArray(mixed $klaviyo): ProfilesModel
   {
     return new ProfilesModel(
-      id: $klaviyo->id,
+      id: $klaviyo['id'] ?? '',
+    );
+  }
+
+  public static function fromObject(mixed $klaviyo): ProfilesModel
+  {
+    return new ProfilesModel(
+      id: $klaviyo->id ?? '',
+    );
+  }
+
+  public static function fromEmpty(): ProfilesModel
+  {
+    return new ProfilesModel(
+      id: '',
     );
   }
 }

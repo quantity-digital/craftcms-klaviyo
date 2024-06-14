@@ -1,6 +1,6 @@
 <?php
 
-namespace QD\klaviyo\domains\events;
+namespace QD\klaviyo\domains\lists;
 
 use QD\klaviyo\config\Api;
 
