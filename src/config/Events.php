@@ -7,22 +7,21 @@ use yii\base\Event;
 use craft\commerce\elements\Order;
 use craft\commerce\services\OrderHistories;
 use QD\klaviyo\domains\order\OrderEvents;
-use QD\klaviyo\Klaviyo;
 
 trait Events
 {
-  public $settings = null;
-
   public function initEvents(): void
   {
     // Get requests
     $request = Craft::$app->getRequest();
 
-    // Settings
-    $this->settings = Klaviyo::$plugin->getSettings();
-
     // Register global event listeners
     $this->registerGlobalEventListeners();
+
+    // Register commerce event listeners
+    if (Craft::$app->plugins->isPluginEnabled('commerce')) {
+      $this->registerCommerceEventListeners();
+    }
 
     // Register frontend event listeners
     if (!$request->getIsCpRequest() && !$request->getIsConsoleRequest()) {
@@ -36,6 +35,10 @@ trait Events
   }
 
   protected function registerGlobalEventListeners(): void
+  {
+  }
+
+  protected function registerCommerceEventListeners(): void
   {
     // Order complete
     if ($this->settings->trackOrderComplete) {

@@ -14,7 +14,7 @@ class Api
   public static function instance(int $retries = 3, int $wait = 3)
   {
     return new KlaviyoAPI(
-      Klaviyo::getInstance()->getConfigService()->getApiKey(), // TODO: Update to settings
+      Klaviyo::getInstance()->getSettings()->apiKey,
       $retries,
       $wait,
     );

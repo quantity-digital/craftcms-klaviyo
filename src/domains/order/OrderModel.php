@@ -3,6 +3,7 @@
 namespace QD\klaviyo\domains\order;
 
 use craft\commerce\elements\Order;
+use craft\commerce\helpers\Currency;
 
 class OrderModel
 {
@@ -43,11 +44,11 @@ class OrderModel
       number: $order->number ?? '',
       reference: $order->reference ?? '',
 
-      total: $order->totalPrice ?? 0,
-      discount: $order->totalDiscount ?? 0,
-      shipping: $order->totalShippingCost ?? 0,
+      total: Currency::formatAsCurrency($order->totalPrice, $order->paymentCurrency, true, false) ?? 0,
+      discount: Currency::formatAsCurrency($order->totalDiscount, $order->paymentCurrency, true, false) ?? 0,
+      shipping: Currency::formatAsCurrency($order->totalShippingCost, $order->paymentCurrency, true, false) ?? 0,
 
-      currency: $order->currency ?? '',
+      currency: $order->paymentCurrency ?? '',
       qty: $order->totalQty ?? 0,
       coupon: $order->couponCode ?? '',
 

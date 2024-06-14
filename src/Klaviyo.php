@@ -12,25 +12,20 @@ use QD\klaviyo\models\Settings;
 
 class Klaviyo extends Plugin
 {
-    use Services;
     use Routes;
     use Events;
 
     public static $plugin;
-
-    public static $commerceInstalled = false;
     public bool $hasCpSettings = true;
 
 
     // Init
-    public function init()
+    public function init(): void
     {
         parent::init();
 
         self::$plugin = $this;
-        self::$commerceInstalled = Craft::$app->plugins->isPluginEnabled('commerce');
 
-        $this->initComponents();
         $this->initEvents();
         $this->registerApiEndpoints();
     }
@@ -47,10 +42,8 @@ class Klaviyo extends Plugin
         return new Settings();
     }
 
-    protected function settingsHtml(): string
+    protected function settingsHtml(): ?string
     {
-        return Craft::$app->getView()->renderTemplate('craftcms-klaviyo/settings', [
-            'settings' => $this->getSettings()
-        ]);
+        return Craft::$app->getView()->renderTemplate('craftcms-klaviyo/settings', ['settings' => $this->getSettings()]);
     }
 }

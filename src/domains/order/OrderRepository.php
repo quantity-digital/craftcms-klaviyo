@@ -2,7 +2,6 @@
 
 namespace QD\klaviyo\domains\order;
 
-use craft\base\Component;
 use craft\commerce\elements\Order;
 use craft\commerce\Plugin as Commerce;
 use QD\klaviyo\domains\cart\CartService;
@@ -32,7 +31,7 @@ class OrderRepository
         continue;
       }
 
-      $items[] = OrderItemModel::fromLineItem($item, $purchasable);
+      $items[] = OrderItemRepository::getFromLineItem($item, $purchasable, $order);
       $itemIds[] = $purchasable->id ?? 0;
       $itemSkus[] = $purchasable->sku ?? '';
       $itemTitles[] = $purchasable->product->title ?? '';
@@ -95,7 +94,7 @@ class OrderRepository
       $itemTitles[] = $purchasable->product->title ?? '';
 
       $itemEvent = new LineItemPropertiesEvent([
-        'properties' => (array) OrderItemModel::fromLineItem($item, $purchasable),
+        'properties' => (array) OrderItemRepository::getFromLineItem($item, $purchasable, $order),
         'lineItem' => $item,
         'purchasable' => $purchasable,
       ]);

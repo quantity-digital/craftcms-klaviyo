@@ -7,20 +7,20 @@ use craft\base\Model;
 class Settings extends Model
 {
   // API
-  public string $apiKey = '';
-  public string $publicKey = '';
+  public $apiKey = '';
+  public $publicKey = '';
 
   // Lists
-  public string $defaultList = '';
+  public $defaultList = '';
 
   // Product
-  public string $imageFieldHandle = 'image';
-  public string $imageFieldTransform = 'thumbnail';
+  public $imageFieldHandle = 'image';
+  public $imageFieldTransform = 'thumbnail';
 
   // Events
-  public bool $trackOrderUpdate = false;
-  public bool $trackOrderComplete = false;
-  public bool $trackOrderStatus = false;
+  public $trackOrderUpdate = false;
+  public $trackOrderComplete = false;
+  public $trackOrderStatus = false;
 
   // Rules
   public function rules(): array

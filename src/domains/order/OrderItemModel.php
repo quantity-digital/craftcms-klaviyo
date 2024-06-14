@@ -2,6 +2,9 @@
 
 namespace QD\klaviyo\domains\order;
 
+use craft\commerce\elements\Order;
+use craft\commerce\helpers\Currency;
+
 class OrderItemModel
 {
   public function __construct(
@@ -24,7 +27,7 @@ class OrderItemModel
   ) {
   }
 
-  public static function fromLineItem($item, $purchasable)
+  public static function fromLineItem($item, $purchasable, Order $order, $image): OrderItemModel
   {
     return new self(
       id: $purchasable->id ?? 0,
@@ -35,13 +38,13 @@ class OrderItemModel
       url: $purchasable->url ?? '',
 
       qty: $item->qty ?? 0,
-      price: $item->subtotal ?? 0,
-      salePrice: $item->total ?? 0,
+      price: Currency::formatAsCurrency($item->subtotal, $order->paymentCurrency, true, false) ?? 0,
+      salePrice: Currency::formatAsCurrency($item->total, $order->paymentCurrency, true, false) ?? 0,
 
-      unitPrice: $item->price ?? 0,
-      unitSalePrice: $item->salePrice ?? 0,
+      unitPrice: Currency::formatAsCurrency($item->price, $order->paymentCurrency, true, false) ?? 0,
+      unitSalePrice: Currency::formatAsCurrency($item->salePrice, $order->paymentCurrency, true, false) ?? 0,
 
-      image: $purchasable->image ?? '', //TODO: Get field from plugin settings + Transform
+      image: (string) $image ?? ''
     );
   }
 }

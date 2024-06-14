@@ -2,6 +2,7 @@
 
 namespace QD\klaviyo\domains\order;
 
+use craft\commerce\helpers\Currency;
 use QD\klaviyo\domains\events\EventsApi;
 use QD\klaviyo\domains\order\OrderQueue;
 
@@ -24,7 +25,7 @@ class OrderEvents
     }
 
     if ($order->total) {
-      $properties['$value'] = $order->total;
+      $properties['$value'] = Currency::formatAsCurrency($order->total, $order->currency, true, false);
     }
 
     if ($order->currency) {
@@ -41,7 +42,7 @@ class OrderEvents
     $order = $event->sender;
     $email = $order->email;
 
-    OrderQueue::createEvent('Order: Completed', $email, $order->id);
+    OrderQueue::createEvent('Placed Order', $email, $order->id);
   }
 
   public static function afterSave($event)
@@ -49,16 +50,16 @@ class OrderEvents
     $order = $event->sender;
     $email = $order->email;
 
-    OrderQueue::createEvent('Order: Updated', $email, $order->id);
+    OrderQueue::createEvent('Cart Updated', $email, $order->id);
   }
 
   public static function onOrderStatusChange($event)
   {
     $history = $event->orderHistory;
     $order = $history->getOrder();
-    $status = $history->getNewStatus()->name ?? 'Status changed';
+    $status = $history->getNewStatus()->name ?? 'Status Changed';
     $email = $order->email;
 
-    OrderQueue::createEvent('Order: ' . $status, $email, $order->id);
+    OrderQueue::createEvent($status . ' Order', $email, $order->id);
   }
 }

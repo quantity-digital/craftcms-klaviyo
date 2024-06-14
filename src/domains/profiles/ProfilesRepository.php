@@ -34,7 +34,7 @@ class ProfilesRepository
         'accept' => 'application/json',
         'content-type' => 'application/json',
         'revision' => '2024-02-15',
-        'Authorization' => 'Klaviyo-API-Key ' . Klaviyo::getInstance()->getConfigService()->getApiKey(), //TODO: Update to settings
+        'Authorization' => 'Klaviyo-API-Key ' . Klaviyo::getInstance()->getSettings()->apiKey,
       ]
     ]);
 
