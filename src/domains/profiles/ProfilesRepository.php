@@ -90,6 +90,23 @@ class ProfilesRepository
     return $profile;
   }
 
+  public static function createProfileAndSubscribeToList(string $email, ?string $list = null, ?object $attributes = null, ?object $properties = null): ProfilesModel
+  {
+    $profile = self::getFromEmail($email);
+
+    if (!$profile->id) {
+      $profile = self::createFromAttributes($email, $attributes, $properties);
+    }
+
+    if (!$list) {
+      $list = Klaviyo::getInstance()->getSettings()->defaultList;
+    }
+
+    ProfilesApi::subscribeProfileToList($list, $profile->id, $email);
+
+    return $profile;
+  }
+
   //* Update
   public static function updateFromId($id, $attributes)
   {
