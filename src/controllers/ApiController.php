@@ -28,7 +28,7 @@ class ApiController extends Controller
         $attributes = $this->request->getBodyParam('attributes') ?? $this->request->getBodyParam('att') ?? null;
 
         //* Profile
-        $profile = ProfilesRepository::createProfileAndAddToList($email, $list, $attributes);
+        $profile = ProfilesRepository::createProfileAndSubscribeToList($email, $list, $attributes);
 
         //* Response
         return $this->asJson(Response::success($profile));
