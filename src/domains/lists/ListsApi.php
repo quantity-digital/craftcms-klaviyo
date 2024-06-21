@@ -6,10 +6,6 @@ use QD\klaviyo\config\Api;
 
 class ListsApi
 {
-  public function __construct()
-  {
-  }
-
   public static function createListRelationships(string $listId, string $relationId, string $endpoint, string $type)
   {
     $body = [

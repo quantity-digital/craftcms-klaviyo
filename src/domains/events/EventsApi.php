@@ -10,18 +10,28 @@ class EventsApi
   public static function createEvent(string $name, string $email, array $properties)
   {
     $body = [
-      'data' => [
-        'type' => 'event',
-        'attributes' => [
-          'properties' => $properties,
-          'metric' => [
-            'name' => $name,
+      "data" => [
+        "type" => "event",
+        "attributes" => [
+          "properties" => $properties,
+          "metric" => [
+            "data" => [
+              "type" => "metric",
+              "attributes" => [
+                "name" => $name,
+              ]
+            ]
           ],
-          'profile' => [
-            'email' => $email,
-          ],
-        ],
-      ],
+          "profile" => [
+            "data" => [
+              "type" => "profile",
+              "attributes" => [
+                "email" => $email,
+              ]
+            ]
+          ]
+        ]
+      ]
     ];
 
     $klaviyo = Api::instance();
