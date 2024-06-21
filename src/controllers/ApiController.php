@@ -11,7 +11,7 @@ use craft\commerce\Plugin as Commerce;
 
 class ApiController extends Controller
 {
-    protected array|bool|int $allowAnonymous = [
+    protected $allowAnonymous = [
         'subscribe' => self::ALLOW_ANONYMOUS_LIVE | self::ALLOW_ANONYMOUS_OFFLINE,
         'track-event' => self::ALLOW_ANONYMOUS_LIVE | self::ALLOW_ANONYMOUS_OFFLINE,
         'track-order' => self::ALLOW_ANONYMOUS_LIVE | self::ALLOW_ANONYMOUS_OFFLINE,
