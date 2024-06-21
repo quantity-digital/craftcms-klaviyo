@@ -20,6 +20,6 @@ class CreateEventQueue extends BaseJob
 
     protected function defaultDescription(): string
     {
-        return "Klaviyo: Creating $this->name event for $this->email";
+        return "Klaviyo: Creating '$this->name' event for $this->email";
     }
 }
