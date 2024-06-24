@@ -63,79 +63,41 @@ class ProfilesApi
   {
     $klaviyo = Api::instance();
 
-    $profileData = [];
-    $profileData[] = [
-      'type' => 'profile',
-      'id' => $profileId,
-      'attributes' => [
-        "email" => $email,
-        "subscriptions" => [
-          "email" => [
-            "marketing" => [
-              "consent" => "SUBSCRIBED"
-            ]
-          ],
-        ],
-      ]
-    ];
-
-
-    // Body
     $body = [
-      'data' => [
+      "data" => [
         "type" => "profile-subscription-bulk-create-job",
         "attributes" => [
-          "custom_source" => "Website",
+          "custom_source" => "CraftCMS",
           "profiles" => [
-            "data" => $profileData
-          ],
+            "data" => [
+              (object)[
+                "type" => "profile",
+                "id" => $profileId,
+                "attributes" => [
+                  "email" => $email,
+                  "subscriptions" => [
+                    "email" => [
+                      "marketing" => [
+                        "consent" => "SUBSCRIBED"
+                      ]
+                    ],
+                  ]
+                ]
+              ]
+            ]
+          ]
         ],
-        'relationships' => (object)[
-          'list' => (object)[
-            'data' => (object)[
-              'type' => 'list',
-              'id' => $listId
+        "relationships" => [
+          "list" => [
+            "data" => [
+              "type" => "list",
+              "id" => $listId,
             ]
           ]
         ]
       ]
     ];
 
-
-    // $body = [
-    //   'data' => [
-    //     "type" => "profile-subscription-bulk-create-job",
-    //     "attributes" => [
-    //       "profiles" => (object)[
-    //         "data" => [
-    //           (object)[
-    //             "type" => "profile",
-    //             "id" => $profileId,
-    //             'attributes' => (object)[
-    //               'email' => $email,
-    //               "subscriptions" => [
-    //                 "email" => [
-    //                   "marketing" => [
-    //                     "consent" => "SUBSCRIBED"
-    //                   ]
-    //                 ],
-    //               ],
-    //             ]
-    //           ]
-    //         ],
-    //       ],
-    //     ],
-    //     'relationships' => [
-    //       'list' => [
-    //         'data' => [
-    //           'type' => 'list',
-    //           'id' => $listId
-    //         ]
-    //       ]
-    //     ]
-    //   ]
-    // ];
-
-    return $klaviyo->Profiles->subscribeProfiles($body);
+    $klaviyo->Profiles->subscribeProfiles($body);
   }
 }
