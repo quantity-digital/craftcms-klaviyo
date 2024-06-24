@@ -1,11 +1,11 @@
 {
-  "name": "craftcms-klaviyo",
-  "private": true,
-  "version": "4.0.0",
-  "scripts": {
-    "release": "commit-and-tag-version"
-  },
-  "dependencies": {
-    "commit-and-tag-version": "^12.2.0"
-  }
+	"name": "craftcms-klaviyo",
+	"private": true,
+	"version": "4.1.0",
+	"scripts": {
+		"release": "standard-version"
+	},
+	"dependencies": {
+		"standard-version": "^9.5.0"
+	}
 }
