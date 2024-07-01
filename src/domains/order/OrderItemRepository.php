@@ -15,7 +15,10 @@ class OrderItemRepository
       return OrderItemModel::fromLineItem($item, $purchasable, $order, '');
     }
 
-    $image = $purchasable->$imageHandle->one() ?? $purchasable->product->$imageHandle->one() ?? null;
+    $purchasableImage = $purchasable->$imageHandle ? $purchasable->$imageHandle->one() : null;
+    $productImage = $purchasable->product->$imageHandle ? $purchasable->product->$imageHandle->one() : null;
+
+    $image = $purchasableImage ?? $productImage ?? null;
 
     if (!$image) {
       OrderItemModel::fromLineItem($item, $purchasable, $order, '');
