@@ -21,7 +21,7 @@ class OrderItemRepository
     $image = $purchasableImage ?? $productImage ?? null;
 
     if (!$image) {
-      OrderItemModel::fromLineItem($item, $purchasable, $order, '');
+      return OrderItemModel::fromLineItem($item, $purchasable, $order, '');
     }
 
     $imageTransform = Klaviyo::getInstance()->getSettings()->imageFieldTransform;
