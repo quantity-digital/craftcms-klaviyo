@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 4.1.4 (2024-08-07)
+
+### Fixes
+
+- Handled issue where uddate cart wouldn't update because of missing order number
+
 ## 4.1.3 (2024-07-02)
 
 ### Fixes

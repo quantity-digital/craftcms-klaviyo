@@ -30,8 +30,12 @@ class CartService
     return $order->number;
   }
 
-  public static function getRestoreUrl(string $number)
+  public static function getRestoreUrl(?string $number): string
   {
+    if(!$number) {
+      return '';
+    }
+
     $siteUrl = Craft::$app->getSites()->getCurrentSite()->getBaseUrl();
     return $siteUrl . 'api/klaviyo/cart/restore?number=' . $number;
   }
