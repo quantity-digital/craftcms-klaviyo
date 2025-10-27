@@ -2,7 +2,7 @@
   "name": "quantity-digital/craftcms-klaviyo",
   "description": "Klaviyo intergration for CraftCMS & Commerce",
   "type": "craft-plugin",
-  "version": "5.2.0",
+  "version": "5.3.0",
   "keywords": [
     "craft",
     "cms",
