@@ -51,7 +51,7 @@ class ProfilesRepository
   }
 
   //* Create
-  public static function createFromAttributes(string $email, ?object $attributes = null, ?object $properties = null): ProfilesModel
+  public static function createFromAttributes(string $email, ?array $attributes = null, ?array $properties = null): ProfilesModel
   {
     $body = [
       'data' => [
@@ -73,7 +73,7 @@ class ProfilesRepository
     return ProfilesApi::createProfile($body);
   }
 
-  public static function createProfileAndAddToList(string $email, ?string $list = null, ?object $attributes = null, ?object $properties = null): ProfilesModel
+  public static function createProfileAndAddToList(string $email, ?string $list = null, ?array $attributes = null, ?array $properties = null): ProfilesModel
   {
     $profile = self::getFromEmail($email);
 
@@ -90,7 +90,7 @@ class ProfilesRepository
     return $profile;
   }
 
-  public static function createProfileAndSubscribeToList(string $email, ?string $list = null, ?object $attributes = null, ?object $properties = null): ProfilesModel
+  public static function createProfileAndSubscribeToList(string $email, ?string $list = null, ?array $attributes = null, ?array $properties = null): ProfilesModel
   {
     $profile = self::getFromEmail($email);
 
