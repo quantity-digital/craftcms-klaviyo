@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [5.2.0](https://github.com/quantity-digital/craftcms-klaviyo/compare/v5.1.0...v5.2.0) (2025-10-27)
+
+
+### Features
+
+* updated composer version ([6fa9cc8](https://github.com/quantity-digital/craftcms-klaviyo/commit/6fa9cc8cf23d0ef3945bbb3e005bf371fc92617b))
+
 ## 5.1.0 (2025-10-27)
 
 
