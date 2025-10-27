@@ -3,9 +3,9 @@
   "private": true,
   "version": "5.0.1",
   "scripts": {
-    "release": "standard-version"
+    "release": "commit-and-tag-version"
   },
   "dependencies": {
-    "standard-version": "^9.5.0"
+    "commit-and-tag-version": "^12.6.0"
   }
 }
